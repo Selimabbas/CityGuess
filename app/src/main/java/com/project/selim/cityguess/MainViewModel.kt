@@ -68,7 +68,6 @@ class MainViewModel @Inject constructor(
         _predictions.value = if (query.isNotEmpty()) countryRepository.allCapitals()
             .filter { it.lowercase().contains(query.lowercase()) }
         else emptyList()
-        _event.value = Event.None
     }
 
     fun onItemClicked(item: String) {
@@ -78,6 +77,7 @@ class MainViewModel @Inject constructor(
     fun skipQuestion() {
         _event.value = Event.Skip(country.capital.first())
         updateCountry()
+        _predictions.value = emptyList()
     }
 
     sealed class Event {

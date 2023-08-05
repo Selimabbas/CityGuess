@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Text
@@ -37,20 +38,30 @@ fun Screen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
 
     LaunchedEffect(key1 = state) {
         when (state) {
-            MainViewModel.Event.Success -> snackbarHostState.showSnackbar("Correct !")
-            MainViewModel.Event.Error -> snackbarHostState.showSnackbar("Wrong !")
-            is MainViewModel.Event.Skip ->
-                snackbarHostState.showSnackbar("The answer was ${state.missedCapital}")
+            MainViewModel.Event.Success -> snackbarHostState.showSnackbar(
+                "Correct !", duration = SnackbarDuration.Long
+            )
+
+            MainViewModel.Event.Error -> snackbarHostState.showSnackbar(
+                "Wrong !", duration = SnackbarDuration.Long
+            )
+
+            is MainViewModel.Event.Skip -> snackbarHostState.showSnackbar(
+                "The answer was ${state.missedCapital}", duration = SnackbarDuration.Long
+            )
 
             MainViewModel.Event.None -> Unit
         }
     }
-    Scaffold(
-        modifier = modifier.fillMaxSize(),
+    Scaffold(modifier = modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         content = {
             Column(modifier = Modifier.padding(it)) {
-                Question(countryName)
+                Question(
+                    countryName, modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
@@ -76,13 +87,13 @@ fun Screen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                     answer,
                     viewModel::onQueryChanged,
                     viewModel::onItemClicked,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(16.dp),
                     isError = errorState,
                 )
             }
-        }
-    )
+        })
 }
 
 @Composable
@@ -120,13 +131,9 @@ fun Answer(
 
 @Composable
 fun Question(countryName: String, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        elevation = 10.dp
-    ) {
-        Text("Find the capital of $countryName")
+    Card(modifier = modifier) {
+        Text("Find the capital of $countryName",
+            modifier = Modifier.padding(16.dp))
     }
 }
 
