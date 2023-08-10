@@ -22,6 +22,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.selim.cityguess.MainViewModel
@@ -35,6 +36,7 @@ fun Screen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
     val answer = remember { mutableStateOf("") }
     val errorState = state == MainViewModel.Event.Error
     val snackbarHostState = remember { SnackbarHostState() }
+    val focusManager = LocalFocusManager.current
 
     LaunchedEffect(key1 = state) {
         when (state) {
@@ -69,6 +71,7 @@ fun Screen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Button(
                         onClick = {
                             viewModel.answerGiven(answer.value)
+                            focusManager.clearFocus()
                         },
                     ) {
                         Text("Answer")
@@ -77,6 +80,8 @@ fun Screen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Button(
                         onClick = {
                             viewModel.skipQuestion()
+                            focusManager.clearFocus()
+
                         },
                     ) {
                         Text("Skip")
@@ -105,6 +110,8 @@ fun Answer(
     modifier: Modifier = Modifier,
     isError: Boolean = false,
 ) {
+    val focusManager = LocalFocusManager.current
+
     AutoCompleteTextView(
         modifier = modifier,
         query = answer.value,
@@ -122,6 +129,7 @@ fun Answer(
         onItemClick = { item ->
             answer.value = item
             onItemClick(item)
+            focusManager.clearFocus()
         },
         isError = isError,
     ) {

@@ -11,8 +11,6 @@ A
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-\
-,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 
 Oapp/src/androidTest/java/com/project/selim/cityguess/ExampleInstrumentedTest.kt,f\0\f079b70a171b49dd9bf9730791e2286b92db74de
 p
@@ -27,3 +25,5 @@ o
 ?app/src/main/java/com/project/selim/cityguess/ui/theme/Color.kt,7\3\73fae4463b81338e25516408591ff020b6f44d3b
 @
 local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
+r
+Bapp/src/main/java/com/project/selim/cityguess/countries/Country.kt,2\9\2944aa63a4ed1456b961ec9c20f3f212e01636bd
