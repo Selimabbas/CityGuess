@@ -27,3 +27,9 @@ o
 local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
 r
 Bapp/src/main/java/com/project/selim/cityguess/countries/Country.kt,2\9\2944aa63a4ed1456b961ec9c20f3f212e01636bd
+x
+Happ/src/main/java/com/project/selim/cityguess/countries/SimpleCountry.kt,9\c\9c615299c2c16a009f22263b8d54150d361659ea
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
